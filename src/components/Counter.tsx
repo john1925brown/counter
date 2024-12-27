@@ -5,10 +5,9 @@ import styled from 'styled-components';
 
 export const Counter = () => {
   const [count, setCount] = useState(0);
-  const isDisabled = count === 5;
 
   const incCallback = () => {
-    if (!isDisabled) {
+    if (count !== 5) {
       setCount(count + 1);
     }
   };
@@ -21,8 +20,12 @@ export const Counter = () => {
     <StyledCounter>
       <ActuallyNumber count={count} />
       <BtnsGroup>
-        <Button title="inc" callBack={incCallback} isDisabled={isDisabled} />
-        <Button title="reset" callBack={resetCallback} />
+        <Button title="inc" callBack={incCallback} isDisabled={count === 5} />
+        <Button
+          title="reset"
+          callBack={resetCallback}
+          isDisabled={count === 0}
+        />
       </BtnsGroup>
     </StyledCounter>
   );
